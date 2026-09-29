@@ -424,10 +424,13 @@ class Game:
         move_interval = (
             PLAYER_MOVE_INTERVAL / max(self.speed_multiplier, 0.1)
         )
+        ghost_interval = GHOST_MOVE_INTERVAL * (
+            1.5 - 0.5 * self.level_index / max(
+                1, len(self.config["levels"]) - 1))
 
         # Small shared steps keep fast characters from crossing unnoticed.
         max_step = min(1.0 / 120.0, move_interval / 4.0,
-                       GHOST_MOVE_INTERVAL / 4.0)
+                       ghost_interval / 4.0)
         remaining = max(0.0, dt)
         while remaining > 0:
             step_dt = min(remaining, max_step)
@@ -457,7 +460,7 @@ class Game:
                             (moving_player.x, moving_player.y),
                             self.rng,
                             ghost_time,
-                            GHOST_MOVE_INTERVAL,
+                            ghost_interval,
                         )
 
             self._handle_ghost_collisions()

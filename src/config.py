@@ -14,7 +14,11 @@ from typing import Any
 
 DEFAULT_CONFIG: dict[str, Any] = {
     "highscore_filename": "highscores.json",
-    "levels": [{"width": 21, "height": 21} for _ in range(10)],
+    "levels": [
+        {"width": 15 + 2 * ((index + 1) // 2),
+         "height": 15 + 2 * (index // 2)}
+        for index in range(10)
+    ],
     "lives": 3,
     "pacgum": 0,
     "points_per_pacgum": 10,

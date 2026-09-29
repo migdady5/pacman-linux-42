@@ -4,7 +4,7 @@
 
 ## Description
 
-A Python arcade game with ten maze levels, four autonomous ghosts, power pellets, a persistent top-ten leaderboard, pause controls, and reviewer cheats. The first maze is seeded; later mazes are generated anew. The game uses the assigned A-Maze-ing package unchanged.
+A Python arcade game with ten growing maze levels, four autonomous ghosts, power pellets, a persistent top-ten leaderboard, pause controls, and reviewer cheats. The first 15×15 maze is seeded; every level grows, and later mazes are generated anew. Ghosts start slower and reach normal speed by level ten. The game uses the assigned A-Maze-ing package unchanged.
 
 ## Instructions
 
@@ -34,7 +34,7 @@ This creates `dist/pacman-linux-x86_64.zip`. To create a source release containi
 | Key | Default | Meaning |
 | --- | --- | --- |
 | `highscore_filename` | `highscores.json` | Writable highscore JSON path |
-| `levels` | Ten 21×21 mazes | List of objects with odd `width` and `height` (minimum 11) |
+| `levels` | Ten growing mazes, 15×15 to 25×23 | List of objects with odd `width` and `height` (minimum 11) |
 | `lives` | `3` | Initial lives, minimum 1 |
 | `pacgum` | `0` | `0` places a dot in every available corridor; positive values limit the count |
 | `points_per_pacgum` | `10` | Points per regular dot |
