@@ -7,8 +7,8 @@
 | Requirements | Map the 42 PDF to game features | Reviewed |
 | Core game | Menu, maze, entities, score, ten levels | Implemented |
 | Compatibility | Python 3.10 syntax, configuration, assigned wheel | Corrected |
-| Release | Linux PyInstaller folder and ZIP | Build and test before publishing |
-| Distribution | New source repository and private/unlisted gaming-platform build | Pending publication |
+| Release | Linux PyInstaller folder and ZIP | Built and smoke-tested |
+| Distribution | New source repository and private/unlisted gaming-platform build | GitHub uploaded; gaming platform pending |
 
 ## Choices
 
