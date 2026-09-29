@@ -25,7 +25,7 @@ To build on Linux, run `make install` and `python3 package.py`. The output is `d
 docker run --rm --mount type=bind,source="$(pwd)",target=/work -w /work python:3.12-slim sh build_linux_container.sh
 ```
 
-This creates `dist/pacman-linux-x86_64.zip`. To create a source release containing the unmodified wheel, run `python3 package_linux_source.py`; it creates `dist/pacman-linux-source.zip`. Packaging must run on the target OS: a Windows PyInstaller build is not a Linux executable. Run `make lint` for the prescribed checks.
+This creates `dist/pacman-linux-x86_64.zip`. Packaging must run on the target OS: a Windows PyInstaller build is not a Linux executable. Run `make lint` for the prescribed checks.
 
 ## Configuration
 

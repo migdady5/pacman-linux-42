@@ -1,5 +1,8 @@
 # Project management
 
+- [Acceptance tests](acceptance-tests.md) records verified checks and open manual checks.
+- [Decisions and risks](decisions-and-risks.md) records technical choices and remaining delivery risks.
+
 ## Plan and progress
 
 | Phase | Deliverable | Status |
