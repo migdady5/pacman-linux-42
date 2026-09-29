@@ -36,15 +36,15 @@ This creates `dist/pacman-linux-x86_64.zip`. To create a source release containi
 | `highscore_filename` | `highscores.json` | Writable highscore JSON path |
 | `levels` | Ten 21×21 mazes | List of objects with odd `width` and `height` (minimum 11) |
 | `lives` | `3` | Initial lives, minimum 1 |
-| `pacgum` | `150` | Regular dots per level, limited by available cells |
+| `pacgum` | `0` | `0` places a dot in every available corridor; positive values limit the count |
 | `points_per_pacgum` | `10` | Points per regular dot |
 | `points_per_super_pacgum` | `50` | Points per power pellet |
 | `points_per_ghost` | `200` | Points per edible ghost |
 | `seed` | `42` | Fixed first-level seed |
-| `level_max_time` | `90` | Seconds per level, minimum 1 |
+| `level_max_time` | `240` | Seconds per level, minimum 1 |
 | `maze_package` | `mazegenerator` | Assigned external generator module |
 
-Numeric values must be JSON integers. Invalid dimensions and even dimensions are adjusted to safe odd values. Super-pacgums occupy the nearest reachable cells to the four corners; regular pacgums are placed in other corridors.
+Numeric values must be JSON integers. Invalid dimensions and even dimensions are adjusted to safe odd values. Super-pacgums occupy the nearest reachable cells to the four corners; regular pacgums fill every other available corridor except the player's starting cell when `pacgum` is `0`.
 
 ## Highscore
 

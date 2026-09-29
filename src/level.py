@@ -46,7 +46,7 @@ class Level:
 
         Args:
             maze: The normalized maze from the maze adapter.
-            pacgum_target: Desired number of regular pacgums (config value).
+            pacgum_target: Number of regular pacgums, or zero for all cells.
             rng: Random source used to pick pacgum placement.
         """
         self.maze = maze
@@ -77,8 +77,8 @@ class Level:
             and (x, y) not in self.super_pacgums
         ]
         rng.shuffle(open_cells)
-        self.pacgums: set[tuple[int, int]] = set(
-            open_cells[:min(pacgum_target, len(open_cells))])
+        count = len(open_cells) if pacgum_target == 0 else pacgum_target
+        self.pacgums: set[tuple[int, int]] = set(open_cells[:count])
 
         ghost_names = list(GHOST_COLORS.items())
         self.ghosts: list[Ghost] = []

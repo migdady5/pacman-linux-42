@@ -16,12 +16,12 @@ DEFAULT_CONFIG: dict[str, Any] = {
     "highscore_filename": "highscores.json",
     "levels": [{"width": 21, "height": 21} for _ in range(10)],
     "lives": 3,
-    "pacgum": 150,
+    "pacgum": 0,
     "points_per_pacgum": 10,
     "points_per_super_pacgum": 50,
     "points_per_ghost": 200,
     "seed": 42,
-    "level_max_time": 90,
+    "level_max_time": 240,
     "maze_package": "mazegenerator",
 }
 
