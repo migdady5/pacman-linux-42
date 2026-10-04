@@ -216,8 +216,20 @@ class GameAssets:
         color: str,
         direction: tuple[int, int],
         scared: bool,
+        eaten: bool = False,
     ) -> pygame.Surface:
         """Return the correct ghost image."""
+
+        if eaten:
+            size = max(1, CELL_SIZE - 4)
+            eyes = pygame.Surface((size, size), pygame.SRCALPHA)
+            for x in (size // 3, size * 2 // 3):
+                center = (x, size // 2)
+                pygame.draw.circle(eyes, (255, 255, 255), center, 4)
+                pupil = (center[0] + direction[0],
+                         center[1] + direction[1])
+                pygame.draw.circle(eyes, (40, 80, 220), pupil, 2)
+            return eyes
 
         if scared:
             return self.scared_ghost

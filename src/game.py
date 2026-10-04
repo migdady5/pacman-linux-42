@@ -1090,6 +1090,7 @@ class Game:
                     ],
                     ghost.direction,
                     scared,
+                    eaten=ghost.state == GhostState.EATEN,
                 )
             )
 

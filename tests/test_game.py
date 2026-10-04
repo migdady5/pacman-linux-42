@@ -181,6 +181,31 @@ class GameChecks(unittest.TestCase):
                     Path(self.directory.name) / "pacman.exe")):
                 self.assertEqual(resource_root(), Path(self.directory.name))
 
+    def test_eaten_ghost_has_eyes_not_live_body(self) -> None:
+        image = self.game.assets.ghost_image('green', RIGHT, False,
+                                             eaten=True)
+        self.assertEqual(image.get_at((0, 0)).a, 0)
+        self.assertEqual(image.get_at((image.get_width() // 3,
+                                      image.get_height() // 2)).a, 255)
+
+    def test_eaten_ghost_returns_once_without_duplication(self) -> None:
+        self.game.start_new_game()
+        assert self.game.level is not None
+        level = self.game.level
+        ghost = level.ghosts[0]
+        ghost.x, ghost.y = level.player_start
+        ghost.get_eaten(6)
+        identities = [id(g) for g in level.ghosts]
+        for _ in range(2000):
+            ghost.update_timers(0.02)
+            ghost.advance(level.maze, level.player_start,
+                          random.Random(42), 0.02, 0.18)
+            self.assertEqual([id(g) for g in level.ghosts], identities)
+            if ghost.state == GhostState.CHASE:
+                break
+        self.assertEqual(ghost.state, GhostState.CHASE)
+        self.assertEqual((ghost.x, ghost.y), (ghost.home_x, ghost.home_y))
+
 
 if __name__ == "__main__":
     unittest.main()
