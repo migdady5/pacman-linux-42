@@ -1,7 +1,7 @@
 PYTHON = python3
 CONFIG = config.json
 
-.PHONY: all install run debug clean lint lint-strict
+.PHONY: all install run debug clean lint lint-strict test
 
 all: run
 
@@ -26,3 +26,6 @@ lint:
 lint-strict:
 	$(PYTHON) -m flake8 .
 	$(PYTHON) -m mypy . --strict
+
+test:
+	$(PYTHON) -m unittest discover -s tests -v

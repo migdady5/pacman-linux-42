@@ -3,10 +3,18 @@
 from __future__ import annotations
 
 from pathlib import Path
+import sys
 
 import pygame
 
 from src.constants import CELL_SIZE
+
+
+def resource_root() -> Path:
+    """Locate editable resources in source and packaged installations."""
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).resolve().parent
+    return Path(__file__).resolve().parent.parent
 
 
 class GameAssets:
@@ -15,7 +23,7 @@ class GameAssets:
     def __init__(self) -> None:
         """Load Pac-Man, ghosts, walls, and background images."""
 
-        self.base_path = Path("assets/images")
+        self.base_path = resource_root() / "assets/images"
 
         # ----------------------------------------------------------
         # Background

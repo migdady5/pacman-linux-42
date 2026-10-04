@@ -809,7 +809,7 @@ class Game:
             )
 
         elif (
-            event.unicode.isalnum()
+            (event.unicode.isascii() and event.unicode.isalnum())
             or event.unicode == " "
         ):
 
@@ -840,7 +840,7 @@ class Game:
         )
 
         hud_surface.fill(
-            (0, 0, 0, 205)
+            (0, 0, 0, 255)
         )
 
         self.screen.blit(
@@ -1266,6 +1266,7 @@ class Game:
                 "shutting down cleanly: "
                 f"{exc}"
             )
+            raise
 
         finally:
 

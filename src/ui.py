@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 from functools import lru_cache
-from pathlib import Path
 
 import pygame
 
+from src.assets import resource_root
 from src.constants import COLOR_HIGHLIGHT, COLOR_TEXT
 from src.highscore import HighscoreEntry
 
@@ -69,8 +69,7 @@ def _menu_background(width: int, height: int) -> pygame.Surface:
                      point(.32, .25), point(.68, .25), 1)
 
     # Use the exact existing game characters, with no new image downloads.
-    directory = Path(__file__).resolve().parent.parent / \
-        'assets/images/characters'
+    directory = resource_root() / 'assets/images/characters'
     characters = ('blue_right.png', 'green_right.png', 'orange_right.png',
                   'purple_right.png', 'open.png')
     size = round(38 * unit)

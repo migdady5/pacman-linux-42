@@ -1,5 +1,25 @@
 # Acceptance tests
 
+## Review on 2026-10-04
+
+Verified on Windows with Python 3.12.14 and pygame-ce 2.5.8:
+
+- `python -m flake8 .` and `python -m mypy . --strict` passed.
+- Ten headless behavioral tests passed, including 30 generated mazes,
+  movement against walls, edible-ghost scoring, life loss, timeout,
+  all ten level transitions, menus, cheats, and persistent scores.
+- `python package.py` built a Windows executable. A three-second
+  dummy-display startup check completed without an early process exit.
+- Menu and gameplay renders were inspected. Resource paths now work
+  relative to the source root or packaged executable; the HUD fully
+  hides decorative scores in the background image.
+- The missing `build_linux_container.sh` was restored, but its Linux
+  build was not run in this review because Docker was unavailable.
+
+The older Linux results below are historical records, not newly verified
+results for this revision. Manual Linux playtesting, MLX equivalence,
+and itch.io publication remain outstanding.
+
 | Requirement | Check | Result |
 | --- | --- | --- |
 | Python 3.10 compatibility | Compile all `src` modules and `pac-man.py` in Python 3.10 Linux | Passed |

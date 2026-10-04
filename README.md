@@ -22,6 +22,11 @@ the same Python interpreter; override it with `make PYTHON=/path/to/python
 lint-strict` if needed. A missing `pygame` import means `pygame-ce` must
 be installed in that interpreter's environment.
 
+Run `make test` for behavioral tests with SDL's dummy display and audio
+drivers. These exercise menus, movement, collisions, collectibles, level
+completion, invalid configuration, and leaderboard persistence without
+opening a desktop window.
+
 Alternatively, run `python3 pac-man.py config.json`. The program takes exactly one JSON configuration path. Use arrow keys or WASD to move, `P` to pause, `Enter` to confirm, and `Esc` to return from secondary screens. In play, `C` toggles review cheat mode; when enabled, `I` toggles invincibility, `F` freezes ghosts, `L` adds a life, `K` skips a level, `+`/`-` changes player speed, and `R` resets effects.
 
 For a prebuilt Linux x86-64 release, extract `pacman-linux_x86_64.zip` and run `./pacman/run-pacman.sh`. It contains the executable, images, editable configuration, and this README. No Python install is needed. Linux systems need a graphical desktop and the usual SDL system libraries. The game saves `highscores.json` beside its executable; the directory must be writable.
