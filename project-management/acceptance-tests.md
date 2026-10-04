@@ -35,3 +35,24 @@ and itch.io publication remain outstanding.
 | MLX-equivalent graphics calls | Check every Pygame call against the subject's MLX-equivalence rule | Not yet verified |
 
 Automated checks do not replace a full manual playthrough on the target Linux desktop. The GitHub ZIP is a downloadable build, but GitHub alone does not fulfill the gaming-platform requirement.
+
+## Ghost rendering review on 2026-10-05
+
+- Original code ran in a rendered Pygame window for 600 actual seconds
+  (36,194 frames). An automated controller played without invincibility
+  for the first 120 seconds and with invincibility afterward. There were
+  12 eaten-ghost transitions, three losses, no victory, no crash, and
+  exactly four ghost objects throughout.
+- Eaten ghosts previously rendered with their normal live body while
+  returning home. They now render as returning eyes. No duplicate ghost
+  objects were observed; this does not rule out every visual overlap.
+- Corrected code ran for another 240 actual seconds (14,376 frames),
+  using an automated controller, invincibility and 4x speed throughout.
+  It collected the pellets through all ten levels without skipping levels,
+  reached victory at 183.86 seconds with score 43,900, and recorded 39
+  eaten-ghost transitions with four ghost objects throughout.
+- Twelve behavioral tests, flake8 and strict mypy passed. Linux build
+  workflow 37238984871 passed packaging and a headless startup check.
+- These were automated assisted Windows playtests, not an unassisted
+  manual Linux playthrough. The corrected Linux ZIP is in the build
+  repository; replacing the old itch.io upload remains necessary.
