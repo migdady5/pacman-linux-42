@@ -86,4 +86,6 @@ Full graphical playtesting and gaming-platform publication remain open.
 - [PyInstaller documentation](https://pyinstaller.org/en/stable/)
 - The assigned `mazegenerator` wheel, supplied by the activity, is used without modification.
 
-AI assistance was used to review the specification, diagnose Python 3.10 and configuration defects, integrate the assigned wheel, prepare Linux packaging and documentation, and suggest validation checks. Game behavior and releases must still be verified by the authors during review.
+## AI USAGE
+
+    AI assistance was used to review the specification, diagnose Python 3.10 and configuration defects, integrate the assigned wheel, prepare Linux packaging and documentation, and suggest validation checks. Game behavior and releases must still be verified by the authors during review.
