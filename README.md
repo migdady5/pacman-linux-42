@@ -31,13 +31,7 @@ Alternatively, run `python3 pac-man.py config.json`. The program takes exactly o
 
 For a prebuilt Linux x86-64 release, extract `pacman-linux_x86_64.zip` and run `./pacman/run-pacman.sh`. It contains the executable, images, editable configuration, and this README. No Python install is needed. Linux systems need a graphical desktop and the usual SDL system libraries. The game saves `highscores.json` beside its executable; the directory must be writable.
 
-To build on Linux, run `make install` and `python3 package.py`. The output is `dist/linux/pacman/`. From Windows with Docker Desktop and a Linux-container backend, build an x86-64 release with:
-
-```bash
-docker run --rm --mount type=bind,source="$(pwd)",target=/work -w /work python:3.12-slim sh build_linux_container.sh
-```
-
-This creates `dist/pacman-linux_x86_64.zip`. Packaging must run on the target OS: a Windows PyInstaller build is not a Linux executable. Run `make lint` for the prescribed checks.
+To build on Linux, run `make install` and `python3 package.py`. The output is `dist/linux/pacman/`. Zip that directory for distribution. Packaging must run on the target OS: a Windows PyInstaller build is not a Linux executable. Run `make lint` for the prescribed checks.
 
 ## Configuration
 

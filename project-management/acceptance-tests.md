@@ -13,8 +13,8 @@ Verified on Windows with Python 3.12.14 and pygame-ce 2.5.8:
 - Menu and gameplay renders were inspected. Resource paths now work
   relative to the source root or packaged executable; the HUD fully
   hides decorative scores in the background image.
-- The missing `build_linux_container.sh` was restored, but its Linux
-  build was not run in this review because Docker was unavailable.
+- Linux packaging was not run in this review because Docker was unavailable.
+  Build on Linux using `python3 package.py`; no container helper is included.
 
 The older Linux results below are historical records, not newly verified
 results for this revision. Manual Linux playtesting, MLX equivalence,
