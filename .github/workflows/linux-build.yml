@@ -1,0 +1,64 @@
+name: Build Linux game
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.py'
+      - 'assets/**'
+      - 'config.json'
+      - 'requirements.txt'
+      - 'vendor/**'
+      - '.github/workflows/linux-build.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libegl1 libgl1 libxkbcommon0 libasound2
+          python -m pip install -r requirements.txt
+          python -m pip install vendor/mazegenerator-2.1.0-py3-none-any.whl
+      - name: Check and test
+        run: |
+          python -m flake8 .
+          python -m mypy . --strict
+          python -m unittest discover -s tests -v
+      - name: Build Linux executable
+        run: python package.py
+      - name: Check packaged startup
+        env:
+          SDL_VIDEODRIVER: dummy
+          SDL_AUDIODRIVER: dummy
+        run: |
+          cd dist/linux/pacman
+          python - <<'PY'
+          import subprocess
+          import time
+          p = subprocess.Popen(['./run-pacman.sh'], stdout=subprocess.PIPE,
+                               stderr=subprocess.PIPE)
+          time.sleep(3)
+          if p.poll() is not None:
+              out, err = p.communicate()
+              raise SystemExit(f'Startup failed: {out!r} {err!r}')
+          p.terminate()
+          p.wait()
+          print('Linux executable started successfully')
+          PY
+      - name: Create ZIP with executable permissions
+        run: python -c "import shutil; shutil.make_archive('dist/pacman-linux-x86_64', 'zip', 'dist/linux')"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pacman-linux-x86_64
+          path: dist/pacman-linux-x86_64.zip
+          if-no-files-found: error
